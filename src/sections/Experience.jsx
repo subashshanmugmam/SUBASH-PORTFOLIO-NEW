@@ -17,21 +17,24 @@ const Experience = () => {
       // and fade in
       gsap.from(card, {
         // Move the card in from the left
-        xPercent: -100,
+        xPercent: -50, // Reduced from -100 for faster animation
         // Make the card invisible at the start
         opacity: 0,
         // Set the origin of the animation to the left side of the card
         transformOrigin: "left left",
-        // Animate over 1 second
-        duration: 1,
-        // Use a power2 ease-in-out curve
-        ease: "power2.inOut",
-        // Trigger the animation when the card is 80% of the way down the screen
+        // Animate over 0.8 seconds (reduced from 2 seconds)
+        duration: 0.8,
+        // Use a power2 ease-out for snappier feel
+        ease: "power2.out",
+        // Trigger the animation when the card is 85% of the way down the screen (earlier trigger)
         scrollTrigger: {
           // The card is the trigger element
           trigger: card,
-          // Trigger the animation when the card is 80% down the screen
-          start: "top 80%",
+          // Trigger the animation when the card is 85% down the screen (earlier than 80%)
+          start: "top 85%",
+          // Add some buffer for smoother animations
+          end: "top 60%",
+          toggleActions: "play none none reverse", // Allow reverse on scroll up
         },
       });
     });
@@ -43,20 +46,23 @@ const Experience = () => {
     gsap.to(".timeline", {
       // Set the origin of the animation to the bottom of the timeline
       transformOrigin: "bottom bottom",
-      // Animate the timeline height over 1 second
-      ease: "power1.inOut",
+      // Faster animation for timeline
+      ease: "power1.out",
       // Trigger the animation when the timeline is at the top of the screen
       // and end it when the timeline is at 70% down the screen
       scrollTrigger: {
         trigger: ".timeline",
         start: "top center",
         end: "70% center",
-        // Update the animation as the user scrolls
+        // Update the animation as the user scrolls with faster refresh
+        refreshPriority: 1,
         onUpdate: (self) => {
           // Scale the timeline height as the user scrolls
           // from 1 to 0 as the user scrolls up the screen
           gsap.to(".timeline", {
             scaleY: 1 - self.progress,
+            duration: 0.1, // Much faster timeline updates
+            ease: "none", // No easing for smoother real-time updates
           });
         },
       },
@@ -67,26 +73,30 @@ const Experience = () => {
     gsap.utils.toArray(".expText").forEach((text) => {
       // Animate the text opacity from 0 to 1
       // and move it from the left to its final position
-      // over 1 second with a power2 ease-in-out curve
+      // over a shorter duration with a snappier curve
       gsap.from(text, {
         // Set the opacity of the text to 0
         opacity: 0,
+        // Slight Y movement for smoother feel
+        y: 20,
         // Move the text from the left to its final position
         // (xPercent: 0 means the text is at its final position)
         xPercent: 0,
-        // Animate over 1 second
-        duration: 1,
-        // Use a power2 ease-in-out curve
-        ease: "power2.inOut",
-        // Trigger the animation when the text is 60% down the screen
+        // Animate over 0.6 seconds (reduced from 2 seconds)
+        duration: 0.6,
+        // Use a power2 ease-out for snappier feel
+        ease: "power2.out",
+        // Trigger the animation when the text is 75% down the screen (earlier trigger)
         scrollTrigger: {
           // The text is the trigger element
           trigger: text,
-          // Trigger the animation when the text is 60% down the screen
-          start: "top 60%",
+          // Trigger the animation when the text is 75% down the screen (earlier than 60%)
+          start: "top 75%",
+          end: "top 50%",
+          toggleActions: "play none none reverse", // Allow reverse on scroll up
         },
       });
-    }, "<"); // position parameter - insert at the start of the animation
+    }, "<0.1"); // Stagger by 0.1 seconds for smoother cascade effect
   }, []);
 
   return (
@@ -102,7 +112,7 @@ const Experience = () => {
         <div className="mt-32 relative">
           <div className="relative z-50 xl:space-y-32 space-y-10">
             {expCards.map((card) => (
-              <div key={card.title} className="exp-card-wrapper">
+              <div key={card.title} className="exp-card-wrapper timeline-card">
                 <div className="xl:w-2/6">
                   <GlowCard card={card}>
                     <div>

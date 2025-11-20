@@ -1,11 +1,26 @@
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
+import { Suspense } from "react";
 
 import Computer from "./Computer";
 
+// Loading component for 3D scene
+const Loader = () => (
+  <mesh>
+    <boxGeometry args={[1, 1, 1]} />
+    <meshStandardMaterial color="#cd7c2e" wireframe />
+  </mesh>
+);
+
 const ContactExperience = () => {
   return (
-    <Canvas shadows camera={{ position: [0, 3, 7], fov: 45 }}>
+    <Canvas 
+      shadows 
+      camera={{ position: [0, 3, 7], fov: 45 }}
+      dpr={[1, 1.5]} // Limit pixel ratio
+      performance={{ min: 0.5 }}
+      gl={{ antialias: false }} // Disable antialiasing
+    >
       <ambientLight intensity={0.5} color="#fff4e6" />
 
       <directionalLight position={[5, 5, 3]} intensity={2.5} color="#ffd9b3" />
@@ -34,9 +49,11 @@ const ContactExperience = () => {
         </mesh>
       </group>
 
-      <group scale={0.03} position={[0, -1.49, -2]} castShadow>
-        <Computer />
-      </group>
+      <Suspense fallback={<Loader />}>
+        <group scale={0.03} position={[0, -1.49, -2]} castShadow>
+          <Computer />
+        </group>
+      </Suspense>
     </Canvas>
   );
 };
