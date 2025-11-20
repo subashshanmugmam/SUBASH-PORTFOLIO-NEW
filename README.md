@@ -2,7 +2,7 @@
 
 A modern, interactive 3D portfolio website built with React and Three.js, showcasing creativity and technical skills through immersive 3D experiences.
 
-![3D Portfolio](src/assets/public/images/readme.png)
+
 
 ## 🚀 Features
 
