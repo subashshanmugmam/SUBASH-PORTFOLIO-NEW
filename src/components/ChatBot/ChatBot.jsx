@@ -107,8 +107,8 @@ const ChatBot = () => {
     "tell me about yourself": "I'm Subash S, an AI Developer and Web Engineer with expertise in machine learning, web development, and automation. I love building innovative solutions that solve real-world problems using AI and modern web technologies.",
     
     // Education
-    "education": "I'm currently pursuing B.Tech in AI & Data Science at MKCE (Muthayammal College of Engineering) with a CGPA of 8.2/10. My studies focus on artificial intelligence, machine learning, and data science applications.",
-    "college": "I study at MKCE (Muthayammal College of Engineering) where I'm pursuing B.Tech in AI & Data Science with a CGPA of 8.2/10.",
+    "education": "I'm currently pursuing B.Tech in AI & Data Science at MKCE ( M Kumarasamy College of Engineering) with a CGPA of 8.2/10. My studies focus on artificial intelligence, machine learning, and data science applications.",
+    "college": "I study at MKCE (M Kumarasamy College of Engineering) where I'm pursuing B.Tech in AI & Data Science with a CGPA of 8.2/10.",
     "degree": "I'm pursuing a B.Tech degree in AI & Data Science at MKCE with a current CGPA of 8.2/10.",
     "study": "I'm studying B.Tech in AI & Data Science at MKCE with a strong academic record of 8.2/10 CGPA, focusing on artificial intelligence and data science technologies.",
     
